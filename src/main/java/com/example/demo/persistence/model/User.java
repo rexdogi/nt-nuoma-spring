@@ -1,7 +1,11 @@
 package com.example.demo.persistence.model;
 
+import org.hibernate.validator.constraints.Email;
+
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class User {
@@ -11,10 +15,12 @@ public class User {
 
     private String firstName;
     private String lastName;
-    private String email;
+
+    @Email
+    private String username;
+
+    @Size(min = 6, max = 50)
     private String password;
-    private boolean enabled;
-    private boolean tokenExpired;
 
     @ManyToMany
     @JoinTable(
@@ -24,6 +30,14 @@ public class User {
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roles;
+
+    public User() {
+    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     public Long getId() {
         return id;
@@ -49,14 +63,6 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -65,27 +71,19 @@ public class User {
         this.password = password;
     }
 
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    public boolean isTokenExpired() {
-        return tokenExpired;
-    }
-
-    public void setTokenExpired(boolean tokenExpired) {
-        this.tokenExpired = tokenExpired;
-    }
-
     public Collection<Role> getRoles() {
         return roles;
     }
 
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

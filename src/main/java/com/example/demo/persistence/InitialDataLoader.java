@@ -1,3 +1,4 @@
+/*
 package com.example.demo.persistence;
 
 import com.example.demo.persistence.dao.PrivilegeRepository;
@@ -54,7 +55,6 @@ public class InitialDataLoader implements
         user.setPassword("XD");
         user.setEmail("test@test.com");
         user.setRoles(Arrays.asList(adminRole));
-        user.setEnabled(true);
         userRepository.save(user);
 
         alreadySetup = true;
@@ -82,4 +82,4 @@ public class InitialDataLoader implements
         }
         return role;
     }
-}
+}*/
