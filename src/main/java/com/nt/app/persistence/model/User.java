@@ -90,4 +90,9 @@ public class User {
     public void setEmail(String username) {
         this.email = username;
     }
+
+    @Override
+    public String toString() {
+        return "id: " + getId() + " email: " + getEmail();
+    }
 }

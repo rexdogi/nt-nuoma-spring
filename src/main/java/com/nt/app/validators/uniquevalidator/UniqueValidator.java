@@ -17,10 +17,7 @@ public class UniqueValidator implements ConstraintValidator<Unique, String> {
 
     public boolean isValid(String object, ConstraintValidatorContext constraintContext) {
 
-        if (object == null)
-            return true;
-
-        return userRepository.findByEmail(object) == null;
+        return object == null || userRepository.findByEmail(object) == null;
 
     }
 
