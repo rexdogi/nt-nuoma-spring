@@ -1,6 +1,6 @@
-package com.example.demo.persistence.dao;
+package com.nt.app.persistence.dao;
 
-import com.example.demo.persistence.model.Role;
+import com.nt.app.persistence.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RoleRepository extends JpaRepository<Role, Long> {

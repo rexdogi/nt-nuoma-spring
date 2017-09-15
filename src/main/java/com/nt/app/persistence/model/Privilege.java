@@ -1,4 +1,4 @@
-package com.example.demo.persistence.model;
+package com.nt.app.persistence.model;
 
 import javax.persistence.*;
 import java.util.Collection;

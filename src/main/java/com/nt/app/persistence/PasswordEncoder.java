@@ -1,4 +1,4 @@
-package com.example.demo.persistence;
+package com.nt.app.persistence;
 
 import org.springframework.context.annotation.Bean;
 

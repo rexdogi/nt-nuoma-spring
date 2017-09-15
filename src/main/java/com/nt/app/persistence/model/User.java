@@ -1,11 +1,12 @@
-package com.example.demo.persistence.model;
+package com.nt.app.persistence.model;
 
+import com.nt.app.validators.uniquevalidator.Unique;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Collection;
-import java.util.List;
 
 @Entity
 public class User {
@@ -16,10 +17,13 @@ public class User {
     private String firstName;
     private String lastName;
 
-    @Email
-    private String username;
+    @Unique
+    @Email(message = "{error.email}")
+    @NotNull(message = "{error.notnull}")
+    private String email;
 
-    @Size(min = 6, max = 50)
+    @NotNull(message = "{error.notnull}")
+    @Size(min = 6, max = 200, message = "{error.size}")
     private String password;
 
     @ManyToMany
@@ -34,8 +38,8 @@ public class User {
     public User() {
     }
 
-    public User(String username, String password) {
-        this.username = username;
+    public User(String email, String password) {
+        this.email = email;
         this.password = password;
     }
 
@@ -79,11 +83,11 @@ public class User {
         this.roles = roles;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String username) {
+        this.email = username;
     }
 }

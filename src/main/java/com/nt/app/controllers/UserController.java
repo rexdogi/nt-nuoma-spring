@@ -1,7 +1,8 @@
-package com.example.demo.controllers;
+package com.nt.app.controllers;
 
-import com.example.demo.persistence.dao.UserRepository;
-import com.example.demo.persistence.model.User;
+import com.nt.app.persistence.dao.UserRepository;
+import com.nt.app.persistence.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,7 +15,9 @@ import javax.validation.Valid;
 @RequestMapping("/users")
 public class UserController {
 
+    @Autowired
     private UserRepository applicationUserRepository;
+
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public UserController(UserRepository applicationUserRepository,

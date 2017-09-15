@@ -1,7 +1,7 @@
-package com.example.demo.config;
+package com.nt.app.config;
 
-import com.example.demo.persistence.model.MyUserPrincipal;
-import com.example.demo.persistence.model.User;
+import com.nt.app.persistence.model.MyUserPrincipal;
+import com.nt.app.persistence.model.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -19,8 +19,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
-import static com.example.demo.config.SecurityConstants.*;
-
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private AuthenticationManager authenticationManager;
@@ -36,7 +34,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             User credentials = new ObjectMapper().readValue(req.getInputStream(), User.class);
             return authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
-                            credentials.getUsername(),
+                            credentials.getEmail(),
                             credentials.getPassword(),
                             new ArrayList<>())
             );
@@ -54,9 +52,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         MyUserPrincipal myUserPrincipal = (MyUserPrincipal) auth.getPrincipal();
         String token = Jwts.builder()
                 .setSubject(myUserPrincipal.getUsername())
-                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
-                .signWith(SignatureAlgorithm.HS256, SECRET)
+                .setExpiration(new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME))
+                .signWith(SignatureAlgorithm.HS256, SecurityConstants.SECRET)
                 .compact();
-        res.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
+        res.addHeader(SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX + token);
     }
 }

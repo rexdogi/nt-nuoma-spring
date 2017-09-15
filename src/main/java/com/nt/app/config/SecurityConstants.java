@@ -1,4 +1,4 @@
-package com.example.demo.config;
+package com.nt.app.config;
 
 public class SecurityConstants {
     public static final String SECRET = "topkeke";
