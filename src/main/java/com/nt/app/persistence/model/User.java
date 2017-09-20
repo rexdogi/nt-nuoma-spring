@@ -17,6 +17,9 @@ public class User {
     private String firstName;
     private String lastName;
 
+    private boolean enabled;
+    private boolean tokenExpired;
+
     @Unique
     @Email(message = "{error.email}")
     @NotNull(message = "{error.notnull}")
@@ -89,6 +92,22 @@ public class User {
 
     public void setEmail(String username) {
         this.email = username;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public boolean isTokenExpired() {
+        return tokenExpired;
+    }
+
+    public void setTokenExpired(boolean tokenExpired) {
+        this.tokenExpired = tokenExpired;
     }
 
     @Override

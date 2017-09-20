@@ -9,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.FilterChain;
@@ -49,8 +50,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             HttpServletResponse res,
                                             FilterChain chain,
                                             Authentication auth) throws IOException, ServletException {
-
-        MyUserPrincipal myUserPrincipal = (MyUserPrincipal) auth.getPrincipal();
+        UserDetails myUserPrincipal = (UserDetails) auth.getPrincipal();
+        System.out.println(myUserPrincipal.getAuthorities().toArray()[0]);
         String token = Jwts.builder()
                 .setSubject(myUserPrincipal.getUsername())
                 .setExpiration(new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME))

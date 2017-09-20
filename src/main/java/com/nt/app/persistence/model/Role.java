@@ -14,6 +14,18 @@ public class Role {
     @ManyToMany(mappedBy = "roles")
     private Collection<User> users;
 
+    public Role(String name, Collection<User> users, Collection<Privilege> privileges) {
+        this.name = name;
+        this.users = users;
+        this.privileges = privileges;
+    }
+
+    public Role(Collection<User> users) {
+        this.users = users;
+    }
+
+    public Role() {}
+
     @ManyToMany
     @JoinTable(
             name = "roles_privileges",

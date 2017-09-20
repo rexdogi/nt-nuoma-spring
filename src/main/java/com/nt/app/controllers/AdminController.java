@@ -27,7 +27,7 @@ public class AdminController {
 
     @PostMapping("/attach_role")
     public long attachRole(@RequestBody AttachRoleWrapper attachRoleWrapper) {
-        System.out.println(attachRoleWrapper.getRoleIds()[0]);
-        return attachRoleWrapper.getUserId();
+        System.out.println(attachRoleWrapper.getRoleIds().get(0));
+        return 1;
     }
 }
