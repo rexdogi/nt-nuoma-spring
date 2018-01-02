@@ -1,34 +1,31 @@
-package com.nt.app.persistence.model;
+package com.nt.app.persistence.model.city;
 
-import com.nt.app.validators.uniquevalidator.Unique;
-import com.sun.istack.internal.Nullable;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.List;
 
-@Entity
-public class City {
+public class CityDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    public CityDTO() {
+    }
+
     private Long id;
 
-    @Unique
-    private String name;
-
-    @Nullable
     private double lat;
 
-    @Nullable
     private double lng;
 
     private Long countryId;
 
-    public String getName() {
-        return name;
+    private String title;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public double getLat() {
@@ -55,11 +52,11 @@ public class City {
         this.countryId = countryId;
     }
 
-    public Long getId() {
-        return id;
+    public String getTitle() {
+        return title;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

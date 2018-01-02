@@ -1,14 +1,16 @@
 package com.nt.app.persistence.model;
 
 
+import com.nt.app.persistence.model.city.City;
+import org.springframework.data.elasticsearch.annotations.Document;
+
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.math.BigDecimal;
-import java.util.List;
 
 @Entity
+@Document(indexName = "property", type = "property", shards = 1)
 public class Property {
 
     @Id
@@ -27,9 +29,9 @@ public class Property {
     @Size(max = 100)
     private String address;
 
-    @NotNull
-    @Size(max = 100)
-    private String city;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "city_id")
+    private City city;
 
     @NotNull
     @Size(max = 100)
@@ -52,18 +54,14 @@ public class Property {
 
     @Max(100)
     @NotNull
-    private BigDecimal price;
+    private double price;
 
     @Max(100)
     @NotNull
-    private BigDecimal monthlyPrice;
+    private double monthlyPrice;
 
     @NotNull
     private boolean monthly;
-
-    @OneToMany
-    @JoinColumn(name = "image_id")
-    private List<Image> images;
 
     public Property() {}
 
@@ -97,14 +95,6 @@ public class Property {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
 
     public String getType() {
@@ -155,19 +145,19 @@ public class Property {
         this.area = area;
     }
 
-    public BigDecimal getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
-    public BigDecimal getMonthlyPrice() {
+    public double getMonthlyPrice() {
         return monthlyPrice;
     }
 
-    public void setMonthlyPrice(BigDecimal monthlyPrice) {
+    public void setMonthlyPrice(double monthlyPrice) {
         this.monthlyPrice = monthlyPrice;
     }
 
@@ -177,5 +167,13 @@ public class Property {
 
     public void setMonthly(boolean monthly) {
         this.monthly = monthly;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
     }
 }

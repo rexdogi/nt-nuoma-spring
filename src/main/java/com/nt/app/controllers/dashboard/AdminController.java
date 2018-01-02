@@ -1,16 +1,12 @@
-package com.nt.app.controllers;
+package com.nt.app.controllers.dashboard;
 
-import com.nt.app.persistence.dao.UserRepository;
+import com.nt.app.persistence.jpadao.UserRepository;
 import com.nt.app.persistence.model.AttachRoleWrapper;
-import com.nt.app.persistence.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/admin")

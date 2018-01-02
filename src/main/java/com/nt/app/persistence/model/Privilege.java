@@ -1,5 +1,7 @@
 package com.nt.app.persistence.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -42,6 +44,7 @@ public class Privilege {
         this.name = name;
     }
 
+    @JsonIgnore
     public Collection<Role> getRoles() {
         return roles;
     }

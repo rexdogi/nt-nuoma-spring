@@ -1,6 +1,6 @@
 package com.nt.app.services;
-import com.nt.app.persistence.dao.RoleRepository;
-import com.nt.app.persistence.dao.UserRepository;
+import com.nt.app.persistence.jpadao.RoleRepository;
+import com.nt.app.persistence.jpadao.UserRepository;
 import com.nt.app.persistence.model.Privilege;
 import com.nt.app.persistence.model.Role;
 import com.nt.app.persistence.model.User;
@@ -20,7 +20,7 @@ import java.util.List;
 
 @Service("userDetailsService")
 @Transactional
-public class MyUserDetailsService implements UserDetailsService {
+public class MyUserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
@@ -29,7 +29,7 @@ public class MyUserDetailsService implements UserDetailsService {
 
     private UserRepository applicationUserRepository;
 
-    public MyUserDetailsService(UserRepository applicationUserRepository) {
+    public MyUserDetailsServiceImpl(UserRepository applicationUserRepository) {
         this.applicationUserRepository = applicationUserRepository;
     }
 
@@ -50,6 +50,7 @@ public class MyUserDetailsService implements UserDetailsService {
             Collection<Role> roles) {
 
         return getGrantedAuthorities(getPrivileges(roles));
+
     }
 
     private List<String> getPrivileges(Collection<Role> roles) {

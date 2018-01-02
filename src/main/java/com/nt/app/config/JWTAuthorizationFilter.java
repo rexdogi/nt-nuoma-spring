@@ -26,19 +26,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
                                     HttpServletResponse res,
                                     FilterChain chain) throws IOException, ServletException {
 
-      /*  Enumeration enumeration = req.getHeaderNames();
-        while (enumeration.hasMoreElements()) {
-            System.out.println(enumeration.nextElement());
-        }*/
-
-        res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, x-id, Content-Length, X-Requested-With, *");
-        res.setHeader("Content-Type", "application/json");
-        res.setHeader("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,PATCH,OPTIONS'");
-        res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
-
         String header = req.getHeader(SecurityConstants.HEADER_STRING);
-
-        System.out.println(header);
 
         if (header == null || !header.startsWith(SecurityConstants.TOKEN_PREFIX)) {
             chain.doFilter(req, res);

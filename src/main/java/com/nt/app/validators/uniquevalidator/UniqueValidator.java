@@ -1,8 +1,7 @@
 package com.nt.app.validators.uniquevalidator;
 
 
-import com.nt.app.persistence.dao.UserRepository;
-import com.nt.app.persistence.model.User;
+import com.nt.app.persistence.jpadao.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.ConstraintValidator;

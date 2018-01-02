@@ -1,5 +1,7 @@
 package com.nt.app.persistence.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.nt.app.validators.uniquevalidator.Unique;
 import org.hibernate.validator.constraints.Email;
 
@@ -17,7 +19,10 @@ public class User {
     private String firstName;
     private String lastName;
 
+    @JsonIgnore
     private boolean enabled;
+
+    @JsonIgnore
     private boolean tokenExpired;
 
     @Unique
