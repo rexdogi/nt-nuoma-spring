@@ -12,9 +12,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import java.io.File;
 import java.io.IOException;
 
-@Configuration
-@EnableElasticsearchRepositories(basePackages = "com.nt.app.persistence.elastic")
-@EnableJpaRepositories(basePackages = "com.nt.app.persistence.jpadao")
+//@Configuration
+//@EnableElasticsearchRepositories(basePackages = "com.nt.app.persistence.elastic")
+//@EnableJpaRepositories(basePackages = "com.nt.app.persistence.jpadao")
 public class ElasticConfiguration {
 
     @Bean
